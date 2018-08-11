@@ -4,6 +4,9 @@ This repo is a fork of the excellent blockchain tutorial by @adilmoujahid. The c
 * Replace "value" option in the transaction form with a hidden field with ```value="1"```
 * Remove value column from blockchain frontend. Add voting tally
 
+For an alternate explanation of blockhains, see the 3blue1brown's video
+https://www.youtube.com/watch?v=bBC-nXj3Ng4&frags=pl%2Cwn
+
 # Blockchain Python tutorial
 * Source Code for my blog post: [A Practical Introduction to Blockchain with Python](http://adilmoujahid.com/posts/2018/03/intro-blockchain-bitcoin-python/)
 
