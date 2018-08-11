@@ -1,3 +1,9 @@
+This repo is a fork of the excellent blockchain tutorial by @adilmoujahid. The code is modified a bit to implement a crude blockchain based voting system. All "votes" are simply transactions of value 1 from the sender to one of two options. The changes from @adilmoujahid's version are:
+
+* Combine the wallet generation and transaction page into one
+* Replace "value" option in the transaction form with a hidden field with ```value="1"```
+* Remove value column from blockchain frontend. Add voting tally
+
 # Blockchain Python tutorial
 * Source Code for my blog post: [A Practical Introduction to Blockchain with Python](http://adilmoujahid.com/posts/2018/03/intro-blockchain-bitcoin-python/)
 
