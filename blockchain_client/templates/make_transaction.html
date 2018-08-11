@@ -22,10 +22,10 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">Blockchain Client</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        </button> -->
+        <!-- <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link" href="/">Wallet Generator
@@ -39,7 +39,7 @@
               <a class="nav-link" href="/view/transactions">View Transactions</a>
             </li>
           </ul>
-        </div>
+        </div> -->
       </div>
     </nav>
 
@@ -49,8 +49,8 @@
         <div class="col-lg-12">
 
           <div class="card-body">
-            <h4 class="card-title">Send Coins</h4>
-            <p class="card-text">Enter transaction details and click on "Generate Transaction" button to generate your transaction</p>
+            <h4 class="card-title">EVM</h4>
+            <p class="card-text">Click on "Generate Wallet" button to generate your keys. Then select your option and click on VOTE</p>
           </div>
 
         </div>
@@ -64,7 +64,7 @@
     <form id="transaction_form">
 
         <div class="row">
-          <label class="col-sm-2">Sender Address:</label>
+          <label class="col-sm-2">Sender Address (Public Key):</label>
           <div class="col-sm-10">
             <input type="text" name="sender_address" id="sender_address" rows="2" class="form-control">
 
@@ -81,30 +81,47 @@
         </div>
 
         <br>
+        <div class="row">
+          <!-- <label class="col-sm-2">Wallet:</label> -->
+          <div class="col-sm-12 text-center">
+            <button type="button" id="button_new_wallet" class="btn btn-success">Generate Wallet</button>
+          </div>
+        </div>
+        <br>
+
+        <input type="hidden" name="amount" id="amount" value=1>
         
         <div class="row">
-          <label class="col-sm-2">Recipient Address:</label>
-          <div class="col-sm-10">
-            <input type="text" name="recipient_address" id="recipient_address" rows="2" class="form-control">
+          <label class="col-sm-2">Your Vote:</label>
+          <div class="col-sm-6">
+            <!-- <input type="text" name="recipient_address" id="recipient_address" rows="2" class="form-control"> -->
+            <select name="recipient_address" id="recipient_address" rows="2" class="form-control"form="transaction_form">
+              <option value="Demorecrat">Demorecrat</option>
+              <option value="Mepublican">Mepublican</option>
+            </select>
+          </div>
+          <div class="col-sm-4 text-center">
+            <input type="button" id="generate_transaction" class="btn btn-primary btn-lg " value="VOTE" disabled>
           </div>
         </div>
 
         <br>
         
-        <div class="row">
+        <!-- <div class="row">
           <label class="col-sm-2">Amount to Send:</label>
           <div class="col-sm-10">
             <input type="text" name="amount" id="amount" rows="2" class="form-control">
           </div>
-        </div>
+        </div>  
 
-        <br>
+        <br>      -->
         
-        <div class="row">
+        
+        <!-- <div class="row">
           <div class="col-lg-12 text-center">
             <input type="button" id="generate_transaction" class="btn btn-primary btn-lg" value="Generate Transaction">
           </div>
-        </div>
+        </div> -->
 
         <br>
 
@@ -119,7 +136,7 @@
         <div class="modal-content">
 
           <div class="modal-header">
-            <div class="modal-title col-md-10">Confirm transaction details, enter a blockchain node url and click on "Confirm Transaction" to finalize your transaction.</div>
+            <div class="modal-title col-md-10">Confirm your vote, enter a blockchain node url and click on "Confirm Vote" to finalize your vote.</div>
             <button type="button" class="close col-md-2" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
 
@@ -141,16 +158,17 @@
                     <input type="text" name="recipient_address" id="confirmation_recipient_address" rows="2" class="form-control" readonly>
                   </div>
                 </div>
-                
-                <div class="row">
+                                             
+                <!-- <div class="row">
                   <label class="col-sm-12">Amount to Send:</label>
                   <div class="col-sm-12">
                     <input type="text" name="amount" id="confirmation_amount" rows="2" class="form-control" readonly>
                   </div>
-                </div>
+                </div> -->
+                <input type="hidden" name="amount" id="confirmation_amount" value="1" readonly>
 
                 <div class="row">
-                  <label class="col-sm-12">Transaction Signature:</label>
+                  <label class="col-sm-12">Vote Signature:</label>
                   <div class="col-sm-12">
                     <input type="text" name="signature" id="transaction_signature" rows="2" class="form-control" readonly>
                   </div>
@@ -170,7 +188,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-            <button type="button" id="button_confirm_transaction" class="btn btn-success">Confirm Transaction</button>
+            <button type="button" id="button_confirm_transaction" class="btn btn-success">Confirm Vote</button>
           </div>
 
         </div>
@@ -190,8 +208,8 @@
 
           <div class="modal-body">
             <div class="alert alert-success" role="alert">
-              <h4 class="alert-heading">Successful Transaction!</h4>
-              <p>You successfully completed your transaction. It will be added to the next block.</p>
+              <h4 class="alert-heading">Success!</h4>
+              <p>You successfully voted using blockchain. It will be added to the next block.</p>
             </div>
           </div>
 
@@ -213,6 +231,28 @@
     <script>
 
       $(function () {
+
+          $(function(){
+            $('#button_new_wallet').click(function(){
+              console.log('click');
+              $.ajax({
+                url: '/wallet/new',
+                type: 'GET',
+                success: function(response){
+                  console.log(response);
+                  $("#sender_address").val(response['public_key']);
+                  $("#sender_private_key").val(response['private_key']);
+                  //document.getElementById("warning").style.display = "block";
+                  $("#generate_transaction").prop('disabled', false);
+                },
+                error: function(error){
+                  console.log(error);
+                }
+              });
+            });
+          });
+
+
           $("#generate_transaction").click(function () {
 
             $.ajax({
@@ -264,6 +304,7 @@
 
                 $("#basicModal").modal('hide');
                 $("#success_transaction_modal").modal('show');
+                $("#generate_transaction").prop('disabled', true);
                 
               },
               error: function(error){

@@ -26,7 +26,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Signature import PKCS1_v1_5
 
 import requests
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, redirect
 
 
 class Transaction:
@@ -60,15 +60,16 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return render_template('./index.html')
+	# return render_template('./index.html')
+    return redirect('/make/transaction')
 
 @app.route('/make/transaction')
 def make_transaction():
     return render_template('./make_transaction.html')
 
-@app.route('/view/transactions')
-def view_transaction():
-    return render_template('./view_transactions.html')
+# @app.route('/view/transactions')
+# def view_transaction():
+#     return render_template('./view_transactions.html')
 
 @app.route('/wallet/new', methods=['GET'])
 def new_wallet():
