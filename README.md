@@ -4,7 +4,7 @@ This repo is a fork of the excellent blockchain tutorial by @adilmoujahid. The c
 * Replace "value" option in the transaction form with a hidden field with ```value="1"```
 * Remove value column from blockchain frontend. Add voting tally
 
-For an alternate explanation of blockhains, see the 3blue1brown's video
+For an alternate explanation of blockhains, see 3blue1brown's video
 https://www.youtube.com/watch?v=bBC-nXj3Ng4&frags=pl%2Cwn
 
 --------------------------------
