@@ -1,6 +1,7 @@
 This repo is a fork of the excellent blockchain tutorial by @adilmoujahid. The code is modified a bit to implement a crude blockchain based voting system. All "votes" are simply transactions of value 1 from the sender to one of two options. The changes from @adilmoujahid's version are:
 
 * Combine the wallet generation and transaction page into one
+* Voter shouldn't be able to see other votes. Hence the "View transactions" route and the main nav are removed.
 * Replace "value" option in the transaction form with a hidden field with ```value="1"```
 * Remove value column from blockchain frontend. Add voting tally
 
