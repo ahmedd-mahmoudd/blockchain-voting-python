@@ -120,7 +120,7 @@
 
                 transaction = [count,
                               response['transactions'][i]["recipient_address"],
-                              response['transactions'][i]["sender_address"],
+                              //response['transactions'][i]["sender_address"],
                               //response['transactions'][i]["value"]
                               ];
 
@@ -134,10 +134,10 @@
                 data: transactions,
                 columns: [{ title: "#" },
                           { title: "Recipient Address"},
-                          { title: "Sender Address"},
+                          //{ title: "Sender Address"},
                           //{ title: "Value"}
                           ],
-                columnDefs: [ {targets: [1,2], render: $.fn.dataTable.render.ellipsis( 25 )}]
+                columnDefs: [ {targets: [1], render: $.fn.dataTable.render.ellipsis( 25 )}]
               } );
 
           },
@@ -170,7 +170,7 @@
 
                 transaction = [count,
                               response["chain"][i]["transactions"][j]["recipient_address"],
-                              response["chain"][i]["transactions"][j]["sender_address"],
+                              //response["chain"][i]["transactions"][j]["sender_address"],
                               //response["chain"][i]["transactions"][j]["value"],
                               formattedDateTime,
                               response["chain"][i]["block_number"]];
@@ -191,11 +191,11 @@
                 data: transactions,
                 columns: [{ title: "#" },
                           { title: "Recipient Address"},
-                          { title: "Sender Address"},
+                          //{ title: "Sender Address"},
                           //{ title: "Value"},
                           { title: "Timestamp"},
                           { title: "Block"}],
-                columnDefs: [ {targets: [1,2,3,4], render: $.fn.dataTable.render.ellipsis( 25 )}]
+                columnDefs: [ {targets: [1,2,3], render: $.fn.dataTable.render.ellipsis( 25 )}]
               } );
 
               $('#dem_votes').text(Dem);
